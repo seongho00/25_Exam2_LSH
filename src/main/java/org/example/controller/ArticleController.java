@@ -1,4 +1,8 @@
-package org.example;
+package org.example.controller;
+
+import org.example.container.Container;
+import org.example.Motivation;
+import org.example.util.Util;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -47,13 +51,8 @@ public class ArticleController {
     public void doModify(String cmd) {
         int id = Integer.parseInt(cmd.split("=")[1].trim());
 
-        Motivation foundMotivation = null;
+        Motivation foundMotivation = Util.foundMotivationById(cmd, motivations);
 
-        for (Motivation motivation : motivations) {
-            if (motivation.getId() == id) {
-                foundMotivation = motivation;
-            }
-        }
 
         if (foundMotivation == null) {
             System.out.println(id + "번 명언은 존재하지 않습니다.");
@@ -77,13 +76,8 @@ public class ArticleController {
     public void showDetail(String cmd) {
         int id = Integer.parseInt(cmd.split("=")[1].trim());
 
-        Motivation foundMotivation = null;
+        Motivation foundMotivation = Util.foundMotivationById(cmd, motivations);
 
-        for (Motivation motivation : motivations) {
-            if (motivation.getId() == id) {
-                foundMotivation = motivation;
-            }
-        }
         if (foundMotivation == null) {
             System.out.println(id + "번 명언은 존재하지 않습니다.");
             return;
@@ -99,13 +93,8 @@ public class ArticleController {
     public void doDelete(String cmd) {
         int id = Integer.parseInt(cmd.split("=")[1].trim());
 
-        Motivation foundMotivation = null;
+        Motivation foundMotivation = Util.foundMotivationById(cmd, motivations);
 
-        for (Motivation motivation : motivations) {
-            if (motivation.getId() == id) {
-                foundMotivation = motivation;
-            }
-        }
         if (foundMotivation == null) {
             System.out.println(id + "번 명언은 존재하지 않습니다.");
             return;

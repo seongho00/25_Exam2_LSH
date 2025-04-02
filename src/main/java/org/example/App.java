@@ -1,10 +1,7 @@
 package org.example;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import org.example.container.Container;
+import org.example.controller.ArticleController;
 
 public class App {
     ArticleController articleController;
@@ -19,7 +16,7 @@ public class App {
 
         while (true) {
             System.out.print("명령어 ) ");
-            String cmd = Container.getSc().nextLine();
+            String cmd = Container.getSc().nextLine().trim();
 
             if (cmd.equals("종료")) {
                 System.out.println("== 명언 앱 종료 ==");
@@ -36,6 +33,8 @@ public class App {
                 articleController.showDetail(cmd);
             } else if (cmd.startsWith("삭제")) {
                 articleController.doDelete(cmd);
+            } else {
+                System.out.println("등록되지 않은 명령어입니다.");
             }
         }
 
